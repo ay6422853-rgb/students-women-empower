@@ -1,21 +1,15 @@
-
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-
+import "./UserLayout.css";
 
 // ==========================================
 // ROLE MENUS
 // ==========================================
 
 const roleMenus = {
-
-  // ========================================
-  // MEMBER
-  // ========================================
-
   MEMBER: [
     "Dashboard",
     "Profile",
@@ -24,14 +18,8 @@ const roleMenus = {
     "Orders",
     "Commission",
     "Wallet",
-    "Withdraw"
+    "Withdraw",
   ],
-
-
-  // ========================================
-  // TEAM LEADER
-  // EXACTLY ACCORDING TO App.jsx
-  // ========================================
 
   TEAM_LEADER: [
     "Dashboard",
@@ -44,13 +32,8 @@ const roleMenus = {
     "Commission",
     "Wallet",
     "Withdraw",
-    "Profile"
+    "Profile",
   ],
-
-
-  // ========================================
-  // SUPER TEAM LEADER
-  // ========================================
 
   SUPER_TEAM_LEADER: [
     "Dashboard",
@@ -63,13 +46,8 @@ const roleMenus = {
     "Sales",
     "Commission",
     "Wallet",
-    "Profile"
+    "Profile",
   ],
-
-
-  // ========================================
-  // CHIEF TEAM OFFICER
-  // ========================================
 
   CHIEF_TEAM_OFFICER: [
     "Dashboard",
@@ -80,13 +58,8 @@ const roleMenus = {
     "Team Building",
     "Role Management",
     "Performance",
-    "Profile"
+    "Profile",
   ],
-
-
-  // ========================================
-  // PRODUCT MANAGER
-  // ========================================
 
   PRODUCT_MANAGER: [
     "Dashboard",
@@ -97,13 +70,8 @@ const roleMenus = {
     "Distributor",
     "Transfer Stock",
     "Distributor Stock",
-    "Reports"
+    "Reports",
   ],
-
-
-  // ========================================
-  // CASH MANAGER
-  // ========================================
 
   CASH_MANAGER: [
     "Dashboard",
@@ -111,13 +79,8 @@ const roleMenus = {
     "Commissions",
     "Transactions",
     "Admin Transfer",
-    "Admin Transfer History"
+    "Admin Transfer History",
   ],
-
-
-  // ========================================
-  // DISTRIBUTION MANAGER
-  // ========================================
 
   DISTRIBUTION_MANAGER: [
     "Dashboard",
@@ -125,13 +88,8 @@ const roleMenus = {
     "Receive Stock",
     "Low Stock",
     "Transfer Stock",
-    "Transactions"
+    "Transactions",
   ],
-
-
-  // ========================================
-  // ADMIN
-  // ========================================
 
   ADMIN: [
     "Dashboard",
@@ -146,138 +104,124 @@ const roleMenus = {
     "Admin Transfers",
     "Commissions",
     "Withdrawls",
-    "Analytics"
-  ]
+    "Analytics",
+  ],
 };
-
 
 // ==========================================
 // USER LAYOUT
 // ==========================================
 
 function UserLayout() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const nav = useNavigate();
-
 
   // ========================================
   // GET USER
   // ========================================
 
-  const userData =
-    localStorage.getItem("user");
+  const userData = localStorage.getItem("user");
 
   let user = null;
 
   try {
-
-    user = userData
-      ? JSON.parse(userData)
-      : null;
-
+    user = userData ? JSON.parse(userData) : null;
   } catch {
-
     user = null;
-
   }
-
 
   // ========================================
   // USER NOT FOUND
   // ========================================
 
   if (!user) {
-
     nav("/");
-
     return null;
-
   }
-
 
   // ========================================
   // GET ROLE MENUS
   // ========================================
 
-  const menus =
-    roleMenus[user.role] ||
-    roleMenus.MEMBER;
+  const normalizedRole = String(user.role || "").toUpperCase();
 
+  const menus =
+    roleMenus[normalizedRole] ||
+    roleMenus.MEMBER;
 
   // ========================================
   // LOGOUT
   // ========================================
 
   function logout() {
-
     localStorage.removeItem("token");
-
     localStorage.removeItem("user");
 
-    nav("/");
+    setSidebarOpen(false);
 
+    nav("/");
   }
 
+  // ========================================
+  // OPEN SIDEBAR
+  // ========================================
+
+  function openSidebar() {
+    setSidebarOpen(true);
+  }
+
+  // ========================================
+  // CLOSE SIDEBAR
+  // ========================================
+
+  function closeSidebar() {
+    setSidebarOpen(false);
+  }
 
   // ========================================
   // RENDER
   // ========================================
 
   return (
-
     <div className="dashboard-layout">
-
 
       {/* ==================================
           SIDEBAR
       ================================== */}
 
       <Sidebar
-        role={user.role}
+        role={normalizedRole}
         menus={menus}
         onLogout={logout}
         isOpen={sidebarOpen}
-        onClose={() =>
-          setSidebarOpen(false)
-        }
+        onClose={closeSidebar}
       />
 
-
       {/* ==================================
-          MAIN
+          MAIN CONTENT
       ================================== */}
 
       <main className="dashboard-main">
-
 
         {/* HEADER */}
 
         <Header
           user={user}
           onLogout={logout}
-          onMenuClick={() =>
-            setSidebarOpen(true)
-          }
+          onMenuClick={openSidebar}
         />
-
 
         {/* PAGE */}
 
         <div className="dashboard-page">
-
           <Outlet />
-
         </div>
-
 
       </main>
 
     </div>
-
   );
 }
-
 
 export default UserLayout;

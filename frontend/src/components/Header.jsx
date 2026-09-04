@@ -1,55 +1,81 @@
 import "./Header.css";
 import { useState } from "react";
 
-
-function Header({ user, onLogout }) {
+function Header({
+  user,
+  onLogout,
+  onMenuClick,
+}) {
   const [showMenu, setShowMenu] = useState(false);
+
+  function handleMenuClick() {
+    if (onMenuClick) {
+      onMenuClick();
+    }
+  }
 
   return (
     <header className="top-header">
 
-      {/* Mobile Menu Button */}
+      {/* ==================================
+          MOBILE MENU BUTTON
+      ================================== */}
+
       <button
+        type="button"
         className="mobile-menu-button"
-        onClick={() => {
-          window.dispatchEvent(
-            new CustomEvent("toggle-sidebar")
-          );
-        }}
+        onClick={handleMenuClick}
+        aria-label="Open navigation menu"
       >
         ☰
       </button>
 
-      {/* Page Title */}
+      {/* ==================================
+          PAGE TITLE
+      ================================== */}
+
       <div className="header-left">
         <h2>Dashboard</h2>
+
         <p>
           Manage your Empower account
         </p>
       </div>
 
+      {/* ==================================
+          HEADER RIGHT
+      ================================== */}
 
-      {/* Header Right */}
       <div className="header-right">
 
-        {/* Notification */}
-        <button className="header-icon-button">
+        {/* NOTIFICATION */}
+
+        <button
+          type="button"
+          className="header-icon-button"
+          aria-label="Notifications"
+        >
           🔔
           <span className="notification-dot"></span>
         </button>
 
+        {/* USER */}
 
-        {/* User */}
         <div className="header-user">
 
           <button
+            type="button"
             className="user-button"
-            onClick={() => setShowMenu(!showMenu)}
+            onClick={() =>
+              setShowMenu((prev) => !prev)
+            }
           >
 
             <div className="user-avatar">
               {user?.name
-                ? user.name.charAt(0).toUpperCase()
+                ? user.name
+                    .charAt(0)
+                    .toUpperCase()
                 : "U"}
             </div>
 
@@ -60,7 +86,12 @@ function Header({ user, onLogout }) {
               </strong>
 
               <span>
-                {user?.role?.replaceAll("_", " ")}
+                {user?.role
+                  ? user.role.replaceAll(
+                      "_",
+                      " "
+                    )
+                  : ""}
               </span>
 
             </div>
@@ -71,17 +102,20 @@ function Header({ user, onLogout }) {
 
           </button>
 
+          {/* ==================================
+              USER DROPDOWN
+          ================================== */}
 
-          {/* Dropdown */}
           {showMenu && (
-
             <div className="user-dropdown">
 
               <div className="dropdown-user-info">
 
                 <div className="user-avatar large">
                   {user?.name
-                    ? user.name.charAt(0).toUpperCase()
+                    ? user.name
+                        .charAt(0)
+                        .toUpperCase()
                     : "U"}
                 </div>
 
@@ -97,12 +131,12 @@ function Header({ user, onLogout }) {
 
               </div>
 
-
               <div className="dropdown-divider"></div>
 
-
               <button
+                type="button"
                 onClick={() => {
+                  setShowMenu(false);
                   window.location.href =
                     "/dashboard/member/profile";
                 }}
@@ -110,16 +144,21 @@ function Header({ user, onLogout }) {
                 ◉ &nbsp; My Profile
               </button>
 
-
               <button
-                onClick={onLogout}
+                type="button"
+                onClick={() => {
+                  setShowMenu(false);
+
+                  if (onLogout) {
+                    onLogout();
+                  }
+                }}
                 className="dropdown-logout"
               >
                 ↪ &nbsp; Logout
               </button>
 
             </div>
-
           )}
 
         </div>
