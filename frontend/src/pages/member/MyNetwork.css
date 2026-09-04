@@ -1,0 +1,576 @@
+
+/* =========================================
+   MY NETWORK PAGE
+========================================= */
+
+.member-page {
+  width: 100%;
+  padding: 28px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.page-header p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+}
+
+/* =========================================
+   DASHBOARD CARD
+========================================= */
+
+.dashboard-card {
+  background: #ffffff;
+  border: 1px solid #e8edf3;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 12px rgba(30, 41, 59, 0.04);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  margin: 0 0 5px;
+  font-size: 20px;
+  color: #172033;
+}
+
+.card-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #718096;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.secondary-button {
+  border: 1px solid #d8dee8;
+  background: #ffffff;
+  color: #334155;
+  padding: 10px 17px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.secondary-button:hover {
+  background: #f7f9fc;
+  border-color: #c4ccd8;
+}
+
+.primary-button {
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================================
+   PERIOD / FILTER
+========================================= */
+
+.network-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.filter-button {
+  border: 1px solid #dbe2ea;
+  background: #ffffff;
+  color: #64748b;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filter-button:hover {
+  background: #f8fafc;
+}
+
+.filter-button.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* =========================================
+   NETWORK SUMMARY
+========================================= */
+
+.network-summary {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.network-stat {
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e8edf3;
+  border-radius: 13px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  box-shadow: 0 3px 12px rgba(30, 41, 59, 0.04);
+}
+
+.network-stat-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+}
+
+.network-stat small {
+  display: block;
+  margin-bottom: 5px;
+  color: #718096;
+  font-size: 12px;
+}
+
+.network-stat strong {
+  display: block;
+  color: #172033;
+  font-size: 21px;
+}
+
+/* =========================================
+   SEARCH CONTROLS
+========================================= */
+
+.network-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.network-search {
+  min-width: 280px;
+  flex: 1;
+  max-width: 560px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #dce3eb;
+  border-radius: 9px;
+  padding: 0 13px;
+  background: #ffffff;
+}
+
+.network-search span {
+  font-size: 16px;
+}
+
+.network-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #334155;
+  background: transparent;
+}
+
+.network-search input::placeholder {
+  color: #9aa5b4;
+}
+
+/* =========================================
+   NETWORK LIST
+========================================= */
+
+.network-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.network-user {
+  display: grid;
+  grid-template-columns: 50px minmax(190px, 1.2fr) minmax(360px, 2fr) 150px;
+  align-items: center;
+  gap: 18px;
+  padding: 17px;
+  border: 1px solid #e7ebf0;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: 0.2s;
+}
+
+.network-user:hover {
+  border-color: #d5dce6;
+  box-shadow: 0 4px 14px rgba(30, 41, 59, 0.05);
+}
+
+/* =========================================
+   AVATAR
+========================================= */
+
+.network-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #eaf2ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* =========================================
+   USER INFO
+========================================= */
+
+.network-user-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.network-user-info strong {
+  color: #172033;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.network-user-info span {
+  color: #64748b;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.network-user-info small {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* =========================================
+   USER DETAILS
+========================================= */
+
+.network-user-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.network-user-details > div {
+  min-width: 0;
+}
+
+.network-user-details span {
+  display: block;
+  margin-bottom: 5px;
+  color: #94a3b8;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.network-user-details strong {
+  display: block;
+  color: #334155;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.purchase-amount {
+  color: #16a34a !important;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.network-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+}
+
+.user-status,
+.purchase-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.user-status.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.user-status.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.purchase-status.purchased {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.purchase-status.not-purchased {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.network-message {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  border-radius: 10px;
+  padding: 13px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.retry-button {
+  border: 1px solid #fdba74;
+  background: #ffffff;
+  color: #c2410c;
+  border-radius: 7px;
+  padding: 7px 13px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* =========================================
+   LOADING
+========================================= */
+
+.network-loading {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.network-loader {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.empty-network {
+  text-align: center;
+  padding: 55px 20px;
+}
+
+.empty-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.empty-network h2 {
+  margin: 0 0 8px;
+  color: #172033;
+  font-size: 20px;
+}
+
+.empty-network p {
+  max-width: 500px;
+  margin: 0 auto 20px;
+  color: #718096;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .network-summary {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .network-user {
+    grid-template-columns: 50px 1fr 1fr;
+  }
+
+  .network-user-details {
+    grid-column: 2 / -1;
+  }
+
+  .network-status {
+    grid-column: 2 / -1;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .member-page {
+    padding: 18px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page-header h1 {
+    font-size: 25px;
+  }
+
+  .network-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .network-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .network-search {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+  }
+
+  .network-user {
+    grid-template-columns: 46px 1fr;
+    gap: 13px;
+  }
+
+  .network-user-info {
+    min-width: 0;
+  }
+
+  .network-user-details {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .network-status {
+    grid-column: 1 / -1;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .member-page {
+    padding: 14px;
+  }
+
+  .dashboard-card {
+    padding: 16px;
+  }
+
+  .network-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .network-user-details {
+    grid-template-columns: 1fr;
+  }
+
+  .network-filters {
+    width: 100%;
+  }
+
+  .filter-button {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .network-status {
+    flex-direction: column;
+  }
+
+  .page-header .secondary-button {
+    width: 100%;
+  }
+}

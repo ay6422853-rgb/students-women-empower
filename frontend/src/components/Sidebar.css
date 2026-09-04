@@ -1,0 +1,315 @@
+/* =========================================
+   EMPOWER SIDEBAR
+========================================= */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 260px;
+  height: 100vh;
+
+  background: #111827;
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 1000;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border-right: 1px solid #1f2937;
+}
+
+/* Scrollbar */
+
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 10px;
+}
+
+/* =========================================
+   BRAND
+========================================= */
+
+.sidebar-brand {
+  min-height: 82px;
+
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border-bottom: 1px solid #1f2937;
+}
+
+.brand-logo {
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.sidebar-brand h2 {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+}
+
+.sidebar-brand span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+/* =========================================
+   ROLE
+========================================= */
+
+.sidebar-role {
+  margin: 18px 16px 10px;
+
+  padding: 9px 12px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  border-radius: 8px;
+
+  background: #1f2937;
+
+  color: #d1d5db;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+
+  text-transform: uppercase;
+}
+
+.role-dot {
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.sidebar-nav {
+  flex: 1;
+
+  padding: 8px 12px 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.sidebar-link {
+  min-height: 45px;
+
+  padding: 10px 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border-radius: 9px;
+
+  color: #9ca3af;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: #1f2937;
+
+  color: #ffffff;
+
+  transform: translateX(2px);
+}
+
+.sidebar-link.active {
+  background: #ffffff;
+
+  color: #111827;
+
+  font-weight: 700;
+}
+
+/* =========================================
+   ICON
+========================================= */
+
+.sidebar-icon {
+  width: 25px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+
+  text-align: center;
+}
+
+.sidebar-link.active .sidebar-icon {
+  color: #111827;
+}
+
+/* =========================================
+   BOTTOM / LOGOUT
+========================================= */
+
+.sidebar-bottom {
+  padding: 14px 12px 18px;
+
+  border-top: 1px solid #1f2937;
+}
+
+.logout-button {
+  width: 100%;
+
+  min-height: 45px;
+
+  padding: 10px 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #fca5a5;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #3f1d1d;
+
+  color: #fecaca;
+}
+
+/* =========================================
+   MOBILE OVERLAY
+========================================= */
+
+.sidebar-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  z-index: 999;
+}
+
+/* =========================================
+   MOBILE SIDEBAR
+========================================= */
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 270px;
+
+    transform: translateX(-100%);
+
+    transition:
+      transform 0.25s ease;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .sidebar {
+    width: 250px;
+  }
+
+  .sidebar-brand {
+    padding: 16px;
+  }
+
+  .sidebar-nav {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .sidebar-bottom {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

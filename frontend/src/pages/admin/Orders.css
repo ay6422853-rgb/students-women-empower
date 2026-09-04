@@ -1,0 +1,454 @@
+.orders-page {
+  padding: 24px;
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.orders-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.orders-header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+/* SUMMARY */
+
+.orders-summary {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.orders-card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.orders-card span {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.orders-card strong {
+  font-size: 20px;
+}
+
+.orders-card.value {
+  background: #f8fafc;
+}
+
+.orders-card.success {
+  background: #f0fdf4;
+}
+
+.orders-card.warning {
+  background: #fffbeb;
+}
+
+.orders-card.danger {
+  background: #fef2f2;
+}
+
+/* FILTER */
+
+.orders-filter-box {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr) 100px 100px 1.3fr auto;
+
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.orders-filter-box input,
+.orders-filter-box select {
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  outline: none;
+  background: white;
+}
+
+.orders-filter-box input:focus,
+.orders-filter-box select:focus {
+  border-color: #2563eb;
+}
+
+/* BUTTON */
+
+.orders-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.orders-btn.secondary {
+  background: #111827;
+}
+
+.orders-btn.reset {
+  background: #6b7280;
+}
+
+.orders-btn.small {
+  padding: 6px 11px;
+  font-size: 12px;
+}
+
+/* RESULT */
+
+.orders-result {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 12px 0;
+}
+
+/* TABLE */
+
+.orders-table-wrapper {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th {
+  padding: 13px;
+  background: #f9fafb;
+  color: #4b5563;
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.orders-table td {
+  padding: 13px;
+  border-top: 1px solid #f0f0f0;
+  white-space: nowrap;
+}
+
+.orders-table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* PERSON */
+
+.person-cell strong {
+  display: block;
+}
+
+.person-cell small {
+  display: block;
+  color: #6b7280;
+  margin-top: 3px;
+}
+
+/* ROLE */
+
+.role-badge {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 15px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* STATUS */
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 15px;
+  font-size: 10px;
+  font-weight: 700;
+  background: #f3f4f6;
+}
+
+.status-badge.paid,
+.status-badge.approved,
+.status-badge.confirmed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.rejected,
+.status-badge.cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* EMPTY */
+
+.orders-empty {
+  text-align: center;
+  padding: 50px !important;
+  color: #6b7280;
+}
+
+/* LOADING */
+
+.orders-loading {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #6b7280;
+}
+
+.orders-spinner {
+  width: 34px;
+  height: 34px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: orderSpin 0.8s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes orderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* MODAL */
+
+.orders-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  z-index: 9999;
+}
+
+.orders-modal {
+  width: min(900px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.orders-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 15px;
+  margin-bottom: 18px;
+}
+
+.orders-modal-header h2 {
+  margin: 0;
+}
+
+.orders-modal-header p {
+  margin: 5px 0 0;
+  color: #6b7280;
+}
+
+.modal-close {
+  border: none;
+  background: #f3f4f6;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* PEOPLE */
+
+.people-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.person-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.person-card h3 {
+  margin-top: 0;
+}
+
+.person-card p {
+  margin: 7px 0;
+}
+
+/* ITEMS */
+
+.details-title {
+  margin-bottom: 10px;
+}
+
+.order-items {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: 2fr 100px 100px 120px;
+  gap: 15px;
+  align-items: center;
+
+  padding: 13px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item small {
+  display: block;
+  color: #6b7280;
+  margin-top: 3px;
+}
+
+.no-items {
+  padding: 30px;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* TOTAL */
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 18px;
+  padding: 18px;
+
+  background: #f9fafb;
+  border-radius: 10px;
+}
+
+.order-total strong {
+  font-size: 22px;
+}
+
+/* STATUS SECTION */
+
+.order-status-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+
+  margin-top: 15px;
+}
+
+.order-status-section > div {
+  padding: 13px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.order-status-section span {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.order-status-section strong {
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1300px) {
+  .orders-summary {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .orders-filter-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .orders-page {
+    padding: 14px;
+  }
+
+  .orders-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .orders-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .orders-filter-box {
+    grid-template-columns: 1fr;
+  }
+
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-item {
+    grid-template-columns: 1fr;
+  }
+
+  .order-status-section {
+    grid-template-columns: 1fr;
+  }
+}

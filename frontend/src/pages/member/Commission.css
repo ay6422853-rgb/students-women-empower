@@ -1,0 +1,315 @@
+/* =========================================
+   COMMISSION PAGE
+========================================= */
+
+.commission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.commission-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.commission-row:last-child {
+  border-bottom: none;
+}
+
+
+/* =========================================
+   COMMISSION ICON
+========================================= */
+
+.commission-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: #ecfdf5;
+  color: #059669;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   COMMISSION DETAILS
+========================================= */
+
+.commission-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.commission-details strong {
+  font-size: 15px;
+  color: #111827;
+}
+
+.commission-details span {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+
+/* =========================================
+   COMMISSION AMOUNT
+========================================= */
+
+.commission-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+}
+
+.commission-amount strong {
+  font-size: 17px;
+  color: #059669;
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.status-badge.approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-badge.rejected {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.status-badge.submitted {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+
+/* =========================================
+   COMMISSION SUMMARY CARDS
+========================================= */
+
+.order-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.order-stats .dashboard-card {
+  margin: 0;
+  min-height: 125px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 22px;
+}
+
+.order-stats .dashboard-card small {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.order-stats .dashboard-card strong {
+  display: block;
+
+  color: #111827;
+
+  font-size: 25px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   COMMISSION EMPTY STATE
+========================================= */
+
+.empty-network {
+  text-align: center;
+  padding: 55px 25px;
+}
+
+.empty-network .empty-icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f3f4f6;
+
+  font-size: 30px;
+}
+
+.empty-network h2 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 21px;
+}
+
+.empty-network p {
+  max-width: 500px;
+
+  margin: 0 auto 22px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .order-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .order-stats .dashboard-card {
+    min-height: 105px;
+  }
+
+  .commission-row {
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .commission-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+  }
+
+  .commission-details strong {
+    font-size: 14px;
+  }
+
+  .commission-details span {
+    font-size: 12px;
+  }
+
+  .commission-amount {
+    grid-column: 2;
+    align-items: flex-start;
+
+    margin-top: 4px;
+  }
+
+  .commission-amount strong {
+    font-size: 16px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .commission-row {
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+  }
+
+  .commission-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 15px;
+  }
+
+  .commission-details {
+    min-width: 0;
+  }
+
+  .commission-details strong {
+    font-size: 13px;
+  }
+
+  .commission-details span {
+    font-size: 11px;
+
+    word-break: break-word;
+  }
+
+  .commission-amount {
+    grid-column: 1 / -1;
+
+    padding-left: 50px;
+  }
+
+  .commission-amount strong {
+    font-size: 15px;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+}
