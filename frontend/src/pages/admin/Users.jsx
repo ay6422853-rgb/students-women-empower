@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminUsers.css";
-import { API } from "../../api";
+import { api } from "../../api";
 
 
 const ROLES = [
