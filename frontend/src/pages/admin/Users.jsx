@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminUsers.css";
+import { API } from "../../api";
 
-const API = "http://localhost:5000/api";
 
 const ROLES = [
   "MEMBER",
