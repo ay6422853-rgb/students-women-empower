@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminUsers.css";
-import { api } from "../../api";
+const API = "https://students-and-women-empower.onrender.com/api";
+
 
 
 const ROLES = [
