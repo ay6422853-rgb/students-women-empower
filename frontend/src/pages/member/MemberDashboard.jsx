@@ -54,105 +54,17 @@ function MemberDashboard() {
       .replace(/\b\w/g, (char) => char.toUpperCase());
   }
 
-  function getReferralLink() {
-    if (!user?.referralCode) return "";
-
-    const baseUrl = window.location.origin;
-
-    return `${baseUrl}/register?ref=${encodeURIComponent(
-      user.referralCode
-    )}`;
-  }
-
-  async function copyReferralCode() {
+  function copyReferralCode() {
     if (!user?.referralCode) return;
 
-    try {
-      await navigator.clipboard.writeText(
-        user.referralCode
-      );
-
-      alert("Referral code copied!");
-    } catch {
-      alert("Unable to copy referral code.");
-    }
-  }
-
-  async function copyReferralLink() {
-    const referralLink = getReferralLink();
-
-    if (!referralLink) return;
-
-    try {
-      await navigator.clipboard.writeText(
-        referralLink
-      );
-
-      alert("Referral link copied!");
-    } catch {
-      alert("Unable to copy referral link.");
-    }
-  }
-
-  async function shareReferralLink() {
-    const referralLink = getReferralLink();
-
-    if (!referralLink) return;
-
-    const shareText = `Join Empower Network using my referral link.\n\n${referralLink}`;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Join Empower Network",
-          text: "Join Empower Network using my referral link.",
-          url: referralLink,
-        });
-      } catch (error) {
-        if (error?.name !== "AbortError") {
-          console.error(
-            "Share error:",
-            error
-          );
-        }
-      }
-
-      return;
-    }
-
-    try {
-      await navigator.clipboard.writeText(
-        shareText
-      );
-
-      alert(
-        "Referral link copied! You can now share it anywhere."
-      );
-    } catch {
-      alert(
-        "Unable to share referral link."
-      );
-    }
-  }
-
-  function shareOnWhatsApp() {
-    const referralLink = getReferralLink();
-
-    if (!referralLink) return;
-
-    const message =
-      `Join Empower Network using my referral link:\n\n${referralLink}`;
-
-    const whatsappUrl =
-      `https://wa.me/?text=${encodeURIComponent(
-        message
-      )}`;
-
-    window.open(
-      whatsappUrl,
-      "_blank",
-      "noopener,noreferrer"
-    );
+    navigator.clipboard
+      .writeText(user.referralCode)
+      .then(() => {
+        alert("Referral code copied!");
+      })
+      .catch(() => {
+        alert("Unable to copy referral code.");
+      });
   }
 
   if (loading) {
@@ -171,10 +83,14 @@ function MemberDashboard() {
   return (
     <div className="member-page">
 
-      {/* HEADER */}
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
 
       <div className="page-header">
+
         <div className="page-header-content">
+
           <span className="welcome-label">
             MEMBER DASHBOARD
           </span>
@@ -187,27 +103,35 @@ function MemberDashboard() {
             Manage your orders, network, referrals and earnings
             from one place.
           </p>
+
         </div>
 
         <div className="header-status">
+
           <span className="account-status">
             <span className="status-dot"></span>
             {user.status || "ACTIVE"}
           </span>
+
         </div>
+
       </div>
 
 
-      {/* MEMBER OVERVIEW */}
+      {/* =====================================================
+          MEMBER OVERVIEW
+      ===================================================== */}
 
       <div className="stats-grid">
 
         <div className="stat-card">
+
           <div className="stat-icon">
             👤
           </div>
 
           <div className="stat-content">
+
             <span className="stat-label">
               Account Status
             </span>
@@ -219,16 +143,20 @@ function MemberDashboard() {
             <small>
               Your account is currently active
             </small>
+
           </div>
+
         </div>
 
 
         <div className="stat-card">
+
           <div className="stat-icon">
             🔗
           </div>
 
           <div className="stat-content">
+
             <span className="stat-label">
               Referral Code
             </span>
@@ -238,22 +166,25 @@ function MemberDashboard() {
             </h2>
 
             <button
-              type="button"
               className="copy-code-button"
               onClick={copyReferralCode}
             >
               Copy Code
             </button>
+
           </div>
+
         </div>
 
 
         <div className="stat-card">
+
           <div className="stat-icon">
             ⭐
           </div>
 
           <div className="stat-content">
+
             <span className="stat-label">
               Membership
             </span>
@@ -265,16 +196,20 @@ function MemberDashboard() {
             <small>
               Empower Network Member
             </small>
+
           </div>
+
         </div>
 
 
         <div className="stat-card">
+
           <div className="stat-icon">
             📍
           </div>
 
           <div className="stat-content">
+
             <span className="stat-label">
               Location
             </span>
@@ -286,7 +221,9 @@ function MemberDashboard() {
             <small>
               {user.state || "India"}
             </small>
+
           </div>
+
         </div>
 
       </div>
@@ -313,79 +250,39 @@ function MemberDashboard() {
           </h2>
 
           <p>
-            Share your referral link with friends,
-            family and people who want to join Empower.
+            Share your referral code with people who want to
+            join Empower and build their own network.
           </p>
 
         </div>
 
-
         <div className="referral-banner-action">
 
           <div className="referral-code-box">
-            <span>
-              Your Referral Code
-            </span>
-
+            <span>Your Referral Code</span>
             <strong>
               {user.referralCode || "-"}
             </strong>
           </div>
 
-
-          <div className="referral-link-box">
-
-            <span>
-              Your Referral Link
-            </span>
-
-            <div className="referral-link-value">
-              {user.referralCode
-                ? getReferralLink()
-                : "-"}
-            </div>
-
-          </div>
-
-
-          <div className="referral-buttons">
-
-            <button
-              type="button"
-              onClick={copyReferralLink}
-              className="secondary-button referral-action-button"
-            >
-              📋 Copy Link
-            </button>
-
-
-            <button
-              type="button"
-              onClick={shareReferralLink}
-              className="primary-button referral-action-button"
-            >
-              📤 Share
-            </button>
-
-
-            <button
-              type="button"
-              onClick={shareOnWhatsApp}
-              className="whatsapp-button referral-action-button"
-            >
-              💬 WhatsApp
-            </button>
-
-          </div>
+          <button
+            onClick={copyReferralCode}
+            className="primary-button"
+          >
+            Copy Referral Code
+          </button>
 
         </div>
 
       </div>
 
 
-      {/* QUICK ACTIONS */}
+      {/* =====================================================
+          QUICK ACTIONS
+      ===================================================== */}
 
       <div className="section-title">
+
         <div>
           <span className="section-label">
             QUICK ACCESS
@@ -399,10 +296,13 @@ function MemberDashboard() {
             Access your most important Member features.
           </p>
         </div>
+
       </div>
 
 
       <div className="quick-actions">
+
+        {/* SHOP */}
 
         <button
           className="action-card"
@@ -410,6 +310,7 @@ function MemberDashboard() {
             navigate("/dashboard/member/products")
           }
         >
+
           <span className="action-icon">
             🛍️
           </span>
@@ -425,8 +326,11 @@ function MemberDashboard() {
           <span className="action-arrow">
             →
           </span>
+
         </button>
 
+
+        {/* ORDERS */}
 
         <button
           className="action-card"
@@ -434,6 +338,7 @@ function MemberDashboard() {
             navigate("/dashboard/member/orders")
           }
         >
+
           <span className="action-icon">
             📦
           </span>
@@ -449,8 +354,11 @@ function MemberDashboard() {
           <span className="action-arrow">
             →
           </span>
+
         </button>
 
+
+        {/* NETWORK */}
 
         <button
           className="action-card"
@@ -458,6 +366,7 @@ function MemberDashboard() {
             navigate("/dashboard/member/my-network")
           }
         >
+
           <span className="action-icon">
             👥
           </span>
@@ -473,8 +382,11 @@ function MemberDashboard() {
           <span className="action-arrow">
             →
           </span>
+
         </button>
 
+
+        {/* WALLET */}
 
         <button
           className="action-card"
@@ -482,6 +394,7 @@ function MemberDashboard() {
             navigate("/dashboard/member/wallet")
           }
         >
+
           <span className="action-icon">
             💰
           </span>
@@ -497,17 +410,22 @@ function MemberDashboard() {
           <span className="action-arrow">
             →
           </span>
+
         </button>
 
       </div>
 
 
-      {/* MEMBER JOURNEY */}
+      {/* =====================================================
+          MEMBER JOURNEY
+      ===================================================== */}
 
       <div className="dashboard-card">
 
         <div className="card-header">
+
           <div>
+
             <span className="section-label">
               MEMBER JOURNEY
             </span>
@@ -519,36 +437,44 @@ function MemberDashboard() {
             <p>
               Follow these simple steps to grow with Empower.
             </p>
+
           </div>
+
         </div>
 
 
         <div className="workflow">
 
           <div className="workflow-item">
+
             <div className="workflow-number">
               01
             </div>
 
             <div className="workflow-content">
+
               <strong>
                 Create Your Network
               </strong>
 
               <p>
-                Share your referral link and invite people
+                Share your referral code and invite people
                 to become part of your network.
               </p>
+
             </div>
+
           </div>
 
 
           <div className="workflow-item">
+
             <div className="workflow-number">
               02
             </div>
 
             <div className="workflow-content">
+
               <strong>
                 Purchase Products
               </strong>
@@ -557,16 +483,20 @@ function MemberDashboard() {
                 Browse available products and place orders
                 through your selected Team Leader.
               </p>
+
             </div>
+
           </div>
 
 
           <div className="workflow-item">
+
             <div className="workflow-number">
               03
             </div>
 
             <div className="workflow-content">
+
               <strong>
                 Grow Your Network
               </strong>
@@ -575,16 +505,20 @@ function MemberDashboard() {
                 Build your direct referral network and track
                 your network activity.
               </p>
+
             </div>
+
           </div>
 
 
           <div className="workflow-item">
+
             <div className="workflow-number">
               04
             </div>
 
             <div className="workflow-content">
+
               <strong>
                 Earn Commission
               </strong>
@@ -593,7 +527,9 @@ function MemberDashboard() {
                 Eligible sales in your network can generate
                 commission according to the applicable levels.
               </p>
+
             </div>
+
           </div>
 
         </div>
@@ -601,13 +537,16 @@ function MemberDashboard() {
       </div>
 
 
-      {/* ACCOUNT INFORMATION */}
+      {/* =====================================================
+          ACCOUNT INFORMATION
+      ===================================================== */}
 
       <div className="dashboard-card">
 
         <div className="card-header">
 
           <div>
+
             <span className="section-label">
               ACCOUNT
             </span>
@@ -619,10 +558,10 @@ function MemberDashboard() {
             <p>
               Your current Empower member information.
             </p>
+
           </div>
 
           <button
-            type="button"
             className="secondary-button"
             onClick={() =>
               navigate("/dashboard/member/profile")
@@ -637,6 +576,7 @@ function MemberDashboard() {
         <div className="profile-details-grid">
 
           <div className="info-item">
+
             <span>
               Full Name
             </span>
@@ -644,10 +584,12 @@ function MemberDashboard() {
             <strong>
               {user.name || "-"}
             </strong>
+
           </div>
 
 
           <div className="info-item">
+
             <span>
               Email
             </span>
@@ -655,10 +597,12 @@ function MemberDashboard() {
             <strong>
               {user.email || "-"}
             </strong>
+
           </div>
 
 
           <div className="info-item">
+
             <span>
               Phone
             </span>
@@ -666,10 +610,12 @@ function MemberDashboard() {
             <strong>
               {user.phone || "-"}
             </strong>
+
           </div>
 
 
           <div className="info-item">
+
             <span>
               Referral Code
             </span>
@@ -677,10 +623,12 @@ function MemberDashboard() {
             <strong>
               {user.referralCode || "-"}
             </strong>
+
           </div>
 
 
           <div className="info-item">
+
             <span>
               District
             </span>
@@ -688,10 +636,12 @@ function MemberDashboard() {
             <strong>
               {user.district || "-"}
             </strong>
+
           </div>
 
 
           <div className="info-item">
+
             <span>
               State
             </span>
@@ -699,10 +649,12 @@ function MemberDashboard() {
             <strong>
               {user.state || "-"}
             </strong>
+
           </div>
 
 
           <div className="info-item">
+
             <span>
               Pincode
             </span>
@@ -710,10 +662,12 @@ function MemberDashboard() {
             <strong>
               {user.pincode || "-"}
             </strong>
+
           </div>
 
 
           <div className="info-item">
+
             <span>
               Role
             </span>
@@ -721,6 +675,7 @@ function MemberDashboard() {
             <strong>
               {formatRole(user.role)}
             </strong>
+
           </div>
 
         </div>
@@ -728,7 +683,9 @@ function MemberDashboard() {
       </div>
 
 
-      {/* BOTTOM ACTIONS */}
+      {/* =====================================================
+          BOTTOM ACTIONS
+      ===================================================== */}
 
       <div className="bottom-actions">
 
@@ -738,6 +695,7 @@ function MemberDashboard() {
             navigate("/dashboard/member/profile")
           }
         >
+
           <span>
             👤
           </span>
@@ -755,6 +713,7 @@ function MemberDashboard() {
           <b>
             →
           </b>
+
         </button>
 
 
@@ -764,6 +723,7 @@ function MemberDashboard() {
             navigate("/dashboard/member/my-network")
           }
         >
+
           <span>
             👥
           </span>
@@ -781,6 +741,7 @@ function MemberDashboard() {
           <b>
             →
           </b>
+
         </button>
 
 
@@ -790,6 +751,7 @@ function MemberDashboard() {
             navigate("/dashboard/member/wallet")
           }
         >
+
           <span>
             💰
           </span>
@@ -807,12 +769,15 @@ function MemberDashboard() {
           <b>
             →
           </b>
+
         </button>
 
       </div>
 
 
-      {/* FOOTER */}
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
 
       <div className="dashboard-footer">
 
