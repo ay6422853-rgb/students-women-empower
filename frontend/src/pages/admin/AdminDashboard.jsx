@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://students-and-women-empower.onrender.com/api";
 
 function AdminDashboard() {
   const [users, setUsers] = useState([]);

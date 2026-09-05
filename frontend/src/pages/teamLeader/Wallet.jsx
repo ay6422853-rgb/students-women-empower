@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./TeamLeaderFinance.css";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://students-and-women-empower.onrender.com/api";
 
 function Wallet() {
   const [wallet, setWallet] = useState({

@@ -7,7 +7,7 @@ import React, {
 import "./Sales.css";
 
 const API_URL =
-  "http://localhost:5000/api/cto/sales";
+  "https://students-and-women-empower.onrender.com/api/cto/sales";
 
 function Sales() {
   const [data, setData] = useState(null);

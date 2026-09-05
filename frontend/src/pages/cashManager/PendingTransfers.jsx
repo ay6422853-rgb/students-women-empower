@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./PendingTransfers.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://students-and-women-empower.onrender.com/api";
 
 function PendingTransfers() {
   const [transfers, setTransfers] = useState([]);

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./distributionManager.css";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://students-and-women-empower.onrender.com/api";
 
 function DistributionManagerDashboard() {
 

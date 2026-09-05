@@ -8,7 +8,7 @@ import React, {
 import "./Performance.css";
 
 const API_URL =
-  "http://localhost:5000/api/cto/performance";
+  "https://students-and-women-empower.onrender.com/api/cto/performance";
 
 
 function Performance() {
@@ -1496,3 +1496,4 @@ function Performance() {
 
 
 export default Performance;
+

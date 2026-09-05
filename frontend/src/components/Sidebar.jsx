@@ -336,3 +336,4 @@ function getIcon(menu) {
 
 
 export default Sidebar;
+

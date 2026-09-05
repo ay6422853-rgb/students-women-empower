@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./AdminProducts.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://students-and-women-empower.onrender.com/api";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -835,3 +835,4 @@ function Products() {
 }
 
 export default Products;
+

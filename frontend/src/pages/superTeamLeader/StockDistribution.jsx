@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import "./SuperTeamLeader.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://students-and-women-empower.onrender.com/api";
 
 function StockDistribution() {
 
@@ -666,3 +666,4 @@ function StockDistribution() {
 }
 
 export default StockDistribution;
+

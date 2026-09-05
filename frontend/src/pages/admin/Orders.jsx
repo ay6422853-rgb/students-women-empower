@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./Orders.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://students-and-women-empower.onrender.com/api";
 
 function Orders() {
   const [orders, setOrders] = useState([]);

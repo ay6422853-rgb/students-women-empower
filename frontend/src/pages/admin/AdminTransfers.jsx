@@ -3,7 +3,7 @@ import "./AdminTransfers.css";
 
 const API =
   import.meta.env.VITE_API_URL ||
-  "http://localhost:5000/api";
+  "https://students-and-women-empower.onrender.com/api";
 
 function AdminTransfers() {
   const [transfers, setTransfers] = useState([]);

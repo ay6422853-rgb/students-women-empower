@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./Commissions.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://students-and-women-empower.onrender.com/api";
 
 const SHORTLIST_KEY = "adminCommissionShortlist";
 
