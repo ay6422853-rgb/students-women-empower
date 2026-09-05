@@ -6,6 +6,7 @@ import { api } from "../../api";
 function MemberProfile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [copyMessage, setCopyMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,8 +26,8 @@ function MemberProfile() {
       const data = await api("/users/me", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       setUser(data.user);
@@ -35,7 +36,6 @@ function MemberProfile() {
         "user",
         JSON.stringify(data.user)
       );
-
     } catch (error) {
       console.error(error);
 
@@ -44,6 +44,131 @@ function MemberProfile() {
     } finally {
       setLoading(false);
     }
+  }
+
+  /* =====================================================
+     REFERRAL LINK
+  ====================================================== */
+
+  function getReferralLink() {
+    if (!user?.referralCode) {
+      return "";
+    }
+
+    return `${window.location.origin}/register?ref=${encodeURIComponent(
+      user.referralCode
+    )}`;
+  }
+
+  /* =====================================================
+     COPY REFERRAL CODE
+  ====================================================== */
+
+  async function copyReferralCode() {
+    if (!user?.referralCode) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(
+        user.referralCode
+      );
+
+      setCopyMessage("Referral code copied!");
+
+      setTimeout(() => {
+        setCopyMessage("");
+      }, 2500);
+    } catch (error) {
+      console.error(error);
+      setCopyMessage("Unable to copy referral code");
+    }
+  }
+
+  /* =====================================================
+     COPY REFERRAL LINK
+  ====================================================== */
+
+  async function copyReferralLink() {
+    const link = getReferralLink();
+
+    if (!link) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(link);
+
+      setCopyMessage("Referral link copied!");
+
+      setTimeout(() => {
+        setCopyMessage("");
+      }, 2500);
+    } catch (error) {
+      console.error(error);
+      setCopyMessage("Unable to copy referral link");
+    }
+  }
+
+  /* =====================================================
+     SHARE REFERRAL LINK
+  ====================================================== */
+
+  async function shareReferralLink() {
+    const link = getReferralLink();
+
+    if (!link) {
+      return;
+    }
+
+    const shareText =
+      `Join Empower through my referral link.\n\n${link}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "Join Empower",
+          text: "Join Empower through my referral link.",
+          url: link,
+        });
+      } else {
+        await navigator.clipboard.writeText(shareText);
+
+        setCopyMessage(
+          "Referral link copied. You can share it now!"
+        );
+
+        setTimeout(() => {
+          setCopyMessage("");
+        }, 2500);
+      }
+    } catch (error) {
+      if (error?.name !== "AbortError") {
+        console.error(error);
+      }
+    }
+  }
+
+  /* =====================================================
+     WHATSAPP SHARE
+  ====================================================== */
+
+  function shareOnWhatsApp() {
+    const link = getReferralLink();
+
+    if (!link) {
+      return;
+    }
+
+    const message = encodeURIComponent(
+      `Join Empower through my referral link:\n\n${link}`
+    );
+
+    window.open(
+      `https://wa.me/?text=${message}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   }
 
   if (loading) {
@@ -59,10 +184,14 @@ function MemberProfile() {
     return null;
   }
 
+  const referralLink = getReferralLink();
+
   return (
     <div>
 
-      {/* Page Header */}
+      {/* =====================================================
+          PAGE HEADER
+      ====================================================== */}
 
       <div className="page-header">
 
@@ -86,7 +215,9 @@ function MemberProfile() {
       </div>
 
 
-      {/* Profile Header */}
+      {/* =====================================================
+          PROFILE HEADER
+      ====================================================== */}
 
       <div className="dashboard-card profile-header-card">
 
@@ -113,7 +244,9 @@ function MemberProfile() {
       </div>
 
 
-      {/* Personal Information */}
+      {/* =====================================================
+          PERSONAL INFORMATION
+      ====================================================== */}
 
       <div className="dashboard-card">
 
@@ -181,7 +314,9 @@ function MemberProfile() {
       </div>
 
 
-      {/* Account Information */}
+      {/* =====================================================
+          ACCOUNT INFORMATION
+      ====================================================== */}
 
       <div className="dashboard-card">
 
@@ -249,9 +384,11 @@ function MemberProfile() {
       </div>
 
 
-      {/* Referral */}
+      {/* =====================================================
+          REFERRAL INFORMATION
+      ====================================================== */}
 
-      <div className="dashboard-card">
+      <div className="dashboard-card referral-profile-card">
 
         <div className="card-header">
 
@@ -262,47 +399,136 @@ function MemberProfile() {
             </h2>
 
             <p>
-              Use your referral code to grow your network
+              Invite new members and grow your network
             </p>
 
+          </div>
+
+          <div className="referral-header-icon">
+            🤝
           </div>
 
         </div>
 
 
-        <div className="referral-box">
+        {/* =================================================
+            REFERRAL CODE
+        ================================================== */}
 
-          <span>
-            Your Referral Code
-          </span>
+        <div className="profile-referral-code-box">
 
-          <strong>
-            {user.referralCode || "Not assigned"}
-          </strong>
+          <div className="referral-code-content">
+
+            <span>
+              Your Referral Code
+            </span>
+
+            <strong>
+              {user.referralCode || "Not assigned"}
+            </strong>
+
+          </div>
+
+          <button
+            className="referral-copy-code-button"
+            onClick={copyReferralCode}
+            disabled={!user.referralCode}
+          >
+            Copy Code
+          </button>
 
         </div>
 
 
-        <button
-          className="primary-button"
-          onClick={() => {
+        {/* =================================================
+            REFERRAL LINK
+        ================================================== */}
 
-            if (!user.referralCode) {
-              return;
-            }
+        {user.referralCode && (
+          <div className="profile-referral-link-section">
 
-            navigator.clipboard.writeText(
-              user.referralCode
-            );
+            <div className="profile-referral-link-label">
+              <span>
+                Your Referral Link
+              </span>
 
-            alert(
-              "Referral code copied successfully!"
-            );
+              <small>
+                Share this link to invite new members
+              </small>
+            </div>
 
-          }}
-        >
-          Copy Referral Code
-        </button>
+
+            <div className="profile-referral-link-box">
+
+              <div className="profile-referral-link-value">
+                {referralLink}
+              </div>
+
+              <button
+                className="referral-copy-link-button"
+                onClick={copyReferralLink}
+              >
+                Copy Link
+              </button>
+
+            </div>
+
+
+            {/* =================================================
+                SHARE BUTTONS
+            ================================================== */}
+
+            <div className="profile-referral-actions">
+
+              <button
+                className="profile-share-button"
+                onClick={shareReferralLink}
+              >
+                <span>↗</span>
+                Share
+              </button>
+
+              <button
+                className="profile-whatsapp-button"
+                onClick={shareOnWhatsApp}
+              >
+                <span>◉</span>
+                WhatsApp
+              </button>
+
+            </div>
+
+
+            {/* =================================================
+                INFO
+            ================================================== */}
+
+            <div className="profile-referral-note">
+
+              <span>✓</span>
+
+              <p>
+                Anyone who registers through your referral
+                link will have your referral code attached
+                to their registration.
+              </p>
+
+            </div>
+
+          </div>
+        )}
+
+
+        {/* =================================================
+            COPY MESSAGE
+        ================================================== */}
+
+        {copyMessage && (
+          <div className="referral-copy-message">
+            <span>✓</span>
+            {copyMessage}
+          </div>
+        )}
 
       </div>
 
@@ -311,9 +537,9 @@ function MemberProfile() {
 }
 
 
-/* =====================================
+/* =====================================================
    INFO ITEM
-===================================== */
+===================================================== */
 
 function InfoItem({ label, value }) {
 

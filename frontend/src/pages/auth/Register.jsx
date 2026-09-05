@@ -1,9 +1,18 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { api } from "../../api";
 import "./register.css";
 
 function Register() {
+  const [searchParams] = useSearchParams();
+
+  const referralFromUrl =
+    searchParams.get("ref")?.trim() || "";
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,7 +24,7 @@ function Register() {
     pincode: "",
     password: "",
     confirmPassword: "",
-    referralCode: "",
+    referralCode: referralFromUrl,
     aadhaarNumber: "",
   });
 
@@ -471,12 +480,19 @@ function Register() {
                   <p>
                     Join through someone you know, if applicable.
                   </p>
+
                 </div>
 
               </div>
 
 
-              <div className="referral-box">
+              <div
+                className={`referral-box ${
+                  referralFromUrl
+                    ? "referral-applied"
+                    : ""
+                }`}
+              >
 
                 <div className="referral-icon">
                   #
@@ -501,9 +517,15 @@ function Register() {
 
               </div>
 
-              <div className="optional-note">
-                Referral code is optional. You can register without one.
-              </div>
+              {referralFromUrl ? (
+                <div className="referral-success-note">
+                  ✓ Referral code <strong>{referralFromUrl}</strong> has been applied from your referral link.
+                </div>
+              ) : (
+                <div className="optional-note">
+                  Referral code is optional. You can register without one.
+                </div>
+              )}
 
             </section>
 
@@ -580,6 +602,7 @@ function Register() {
                   <p>
                     Create a strong password for your account.
                   </p>
+
                 </div>
 
               </div>
@@ -662,6 +685,7 @@ function Register() {
                   {message}
                 </div>
               )}
+
 
               <div className="terms-note">
                 By creating an account, you agree to use the
