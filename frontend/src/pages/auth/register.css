@@ -1213,3 +1213,132 @@
 
   outline-offset: 3px;
 }
+
+
+/* =====================================================
+   MOBILE - HIDE INFORMATION SECTION
+===================================================== */
+
+@media (max-width: 768px) {
+  .register-intro {
+    display: none;
+  }
+
+  .register-layout {
+    display: block;
+    width: 100%;
+  }
+
+  .register-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 14px 40px;
+  }
+
+  .register-topbar {
+    padding: 14px 16px;
+  }
+
+  .register-login-link {
+    font-size: 12px;
+  }
+
+  .register-form-header {
+    margin-bottom: 20px;
+  }
+
+  .register-form-header h2 {
+    font-size: 25px;
+    line-height: 1.25;
+  }
+
+  .register-form-header p {
+    font-size: 14px;
+  }
+
+  .register-card {
+    width: 100%;
+    padding: 20px 16px;
+  }
+
+  .form-grid,
+  .form-grid.three-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+
+  .section-heading h3 {
+    font-size: 17px;
+  }
+
+  .section-heading p {
+    font-size: 12px;
+  }
+
+  .section-number {
+    flex-shrink: 0;
+  }
+
+  .register-submit {
+    width: 100%;
+  }
+
+  .already-account {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+  .register-topbar {
+    padding: 12px 14px;
+  }
+
+  .register-brand-text strong {
+    font-size: 14px;
+  }
+
+  .register-brand-text span {
+    font-size: 9px;
+  }
+
+  .register-login-link {
+    font-size: 11px;
+  }
+
+  .register-login-link a {
+    margin-left: 4px;
+  }
+
+  .register-content {
+    padding: 16px 10px 30px;
+  }
+
+  .register-card {
+    padding: 18px 13px;
+    border-radius: 16px;
+  }
+
+  .register-form-header h2 {
+    font-size: 22px;
+  }
+
+  .register-form-header p {
+    font-size: 13px;
+  }
+}
