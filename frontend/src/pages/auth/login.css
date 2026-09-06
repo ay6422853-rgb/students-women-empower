@@ -1237,3 +1237,104 @@
 
   outline-offset: 3px;
 }
+
+/* =====================================================
+   MOBILE AUTH NAVIGATION
+===================================================== */
+
+.mobile-auth-nav {
+  display: none;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .auth-info {
+    position: relative;
+  }
+
+  .mobile-auth-nav {
+    display: flex;
+    position: absolute;
+    top: 22px;
+    right: 18px;
+    align-items: center;
+    gap: 8px;
+    z-index: 20;
+  }
+
+  .mobile-auth-nav button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 9px 14px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-auth-login {
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  }
+
+  .mobile-auth-login:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .mobile-auth-register {
+    background: #ffffff;
+    color: #1d4ed8;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+  }
+
+  .mobile-auth-register:hover {
+    transform: translateY(-1px);
+  }
+
+  /*
+    Information card ke content ko buttons se
+    overlap hone se bachana
+  */
+  .auth-brand {
+    padding-right: 150px;
+  }
+
+  /*
+    Mobile par login form naturally information
+    section ke neeche rahega.
+  */
+  .auth-form-wrapper {
+    scroll-margin-top: 10px;
+  }
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .mobile-auth-nav {
+    top: 17px;
+    right: 14px;
+    gap: 6px;
+  }
+
+  .mobile-auth-nav button {
+    font-size: 11px;
+    padding: 8px 11px;
+    border-radius: 8px;
+  }
+
+  .auth-brand {
+    padding-right: 135px;
+  }
+}

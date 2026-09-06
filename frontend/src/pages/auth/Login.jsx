@@ -74,6 +74,31 @@ function Login() {
             </div>
           </div>
 
+          <div className="mobile-auth-nav">
+            <button
+              type="button"
+              className="mobile-auth-login active"
+              onClick={() => {
+                document
+                  .querySelector(".auth-form-wrapper")
+                  ?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+              }}
+            >
+              Login
+            </button>
+
+            <button
+              type="button"
+              className="mobile-auth-register"
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </button>
+          </div>
+
           <div className="auth-info-content">
 
             <div className="auth-eyebrow">
